@@ -1,14 +1,20 @@
-package com.patriciocontreras.model;
+package com.patriciocontreras.entity;
 
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -34,25 +40,25 @@ public class Gasto implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nombre_gasto")
-	@NotEmpty
-	@NotNull(message = "no puede estar vacio el nombre del gasto")
-	@Size(min = 10,max = 60)
-	private String nombreGasto;
 	
 	@Column(nullable = false)
 	@NotEmpty
 	@Size(min = 30,max = 300)
 	private String descripcion;
 	
-	@Column(name="valor_total",nullable = false)
-	@NotEmpty
-	private int valorTotal;
 	
 	@Column(name = "fecha_gasto")
 	@NotNull(message = "no puede estar vacia la fecha")
 	@Temporal(TemporalType.DATE)
 	private Date fechaGasto; 
+	
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name = "tipo_gasto_id",referencedColumnName = "id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer","hadler"})
+	private TipoGasto tipoGasto;
+	
+	
+	
 	
 	/**
 	 * 

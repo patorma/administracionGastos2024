@@ -1,7 +1,6 @@
-package com.patriciocontreras.model;
+package com.patriciocontreras.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,33 +8,41 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "pagos")
+@Table(name="local_pagos")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pago implements Serializable{
+public class LocalPago implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "metodso_online",nullable=false)
-	private boolean metodoOnline;
+	@Column(nullable = false)
+	@NotEmpty
+	private String nombre;
 	
-	@Column(name = "fecha_gasto")
-	@NotNull(message = "no puede estar vacia la fecha")
-	@Temporal(TemporalType.DATE)
-	private Date fechaPago;
+	@Column(nullable = false)
+	@NotEmpty
+	@Size(min = 12, max = 90)
+	private String direccion;
+	
+	@Column(nullable = false)
+	@NotEmpty
+	@NotNull(message = "no puede estar vacio el nombre de la ciudad")
+	private String ciudad;
+	
+	
 	
 	/**
 	 * 
