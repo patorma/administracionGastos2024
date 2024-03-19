@@ -23,7 +23,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.patriciocontreras.entity.Gasto;
+import com.patriciocontreras.entity.LocalPago;
 import com.patriciocontreras.entity.Pago;
+import com.patriciocontreras.entity.TipoPagos;
 import com.patriciocontreras.service.IPagoService;
 
 import jakarta.validation.Valid;
@@ -168,5 +171,15 @@ public class PagoController {
 		}
 		response.put("mensaje", "El pago del gasto fue eliminado con éxito!");
 		return new ResponseEntity<Map<String, Object>>(response,HttpStatus.OK);
+	}
+	
+	@GetMapping("/pagos/gastos")
+	public List<Gasto> listarGastos(){
+	  return  pagoService.findAllGastos();
+	}
+	
+	@GetMapping("/pagos/locales")
+	public List<LocalPago> listarLocales(){
+		return pagoService.findAllLocales();
 	}
 }

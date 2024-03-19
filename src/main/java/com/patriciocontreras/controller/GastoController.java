@@ -1,5 +1,6 @@
 package com.patriciocontreras.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.patriciocontreras.DTO.DetalleGastoDTO;
 import com.patriciocontreras.entity.DetalleGasto;
 import com.patriciocontreras.entity.Gasto;
 import com.patriciocontreras.service.IGastoService;
@@ -183,10 +185,26 @@ public class GastoController {
 	public List<TipoGasto> listarTipos(){
 		return gastoService.findAllTipos();
 	}
+	
 	@GetMapping("/gastos/detalle/{id}")
-	public List<Object[]> obtenerDetallesGastos(@PathVariable Long id){
-		return gastoService.obtenerDetallesGastos(id);
-	}
+	public List<Map<String, Object>>obtenerDetallesGastos(@PathVariable Long id){
+		List<Object[]> detalles =  gastoService.obtenerDetallesGastos(id);
+        List<Map<String, Object>> detallesJSON = new ArrayList<>();
+
+        for (Object[] detalle : detalles) {
+            int precio = (int) detalle[0];
+            int cantidad = (int) detalle[1];
+            int subtotal = (int) detalle[2];
+
+            DetalleGastoDTO detalleGastoDTO = new DetalleGastoDTO(precio, cantidad, subtotal);
+            detallesJSON.add(detalleGastoDTO.toMap());
+        }
+
+        return detallesJSON;
+    }
+
+		
+	
 	
 	@GetMapping("gasto/subtotal/{id}")
 	public Integer subTotal(@PathVariable Long id ) {

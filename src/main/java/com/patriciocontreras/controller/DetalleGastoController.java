@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.patriciocontreras.entity.DetalleGasto;
-
+import com.patriciocontreras.entity.Gasto;
 import com.patriciocontreras.service.IDetalleGastoService;
 
 import jakarta.validation.Valid;
@@ -174,6 +174,11 @@ public class DetalleGastoController {
 		
 		response.put("mensaje", "El detalle del gasto fue eliminado con éxito!");
 		return new ResponseEntity<Map<String, Object>>(response,HttpStatus.OK);
+	}
+	
+	@GetMapping("/detallesGastos/gastos")
+	public List<Gasto> listarGastos(){
+		return detalleGastoService.findAllGastos();
 	}
 
 }
