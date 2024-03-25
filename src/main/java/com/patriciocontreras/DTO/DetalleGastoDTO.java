@@ -3,8 +3,7 @@ package com.patriciocontreras.DTO;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.patriciocontreras.entity.Gasto;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

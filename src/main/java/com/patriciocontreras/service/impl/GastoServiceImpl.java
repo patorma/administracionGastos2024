@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.patriciocontreras.dao.IGastoDao;
 import com.patriciocontreras.dao.IGenericDao;
-import com.patriciocontreras.entity.DetalleGasto;
+
 import com.patriciocontreras.entity.Gasto;
 import com.patriciocontreras.entity.TipoGasto;
 import com.patriciocontreras.service.IGastoService;

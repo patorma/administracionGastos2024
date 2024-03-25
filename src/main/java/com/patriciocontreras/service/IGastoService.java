@@ -2,9 +2,7 @@ package com.patriciocontreras.service;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
 
-import com.patriciocontreras.entity.DetalleGasto;
 import com.patriciocontreras.entity.Gasto;
 import com.patriciocontreras.entity.TipoGasto;
 

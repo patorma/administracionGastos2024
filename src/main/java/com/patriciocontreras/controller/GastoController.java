@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.patriciocontreras.DTO.DetalleGastoDTO;
-import com.patriciocontreras.entity.DetalleGasto;
+
 import com.patriciocontreras.entity.Gasto;
 import com.patriciocontreras.service.IGastoService;
 import com.patriciocontreras.entity.TipoGasto;
@@ -187,8 +188,15 @@ public class GastoController {
 	}
 	
 	@GetMapping("/gastos/detalle/{id}")
-	public List<Map<String, Object>>obtenerDetallesGastos(@PathVariable Long id){
+	public  ResponseEntity<?> obtenerDetallesGastos(@PathVariable Long id){
 		List<Object[]> detalles =  gastoService.obtenerDetallesGastos(id);
+		Map<String, Object> response = new HashMap<>();
+		
+		if(detalles.isEmpty()) {
+			 response.put("mensaje", "No se encontró el gasto con el ID: " + id +" " +"para mostrar el detalle");
+	          return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+		}
+		
         List<Map<String, Object>> detallesJSON = new ArrayList<>();
 
         for (Object[] detalle : detalles) {
@@ -199,15 +207,26 @@ public class GastoController {
             DetalleGastoDTO detalleGastoDTO = new DetalleGastoDTO(precio, cantidad, subtotal);
             detallesJSON.add(detalleGastoDTO.toMap());
         }
-
-        return detallesJSON;
+   
+        return new ResponseEntity<List<Map<String, Object>>>(detallesJSON,HttpStatus.OK);
     }
 
 		
 	
 	
 	@GetMapping("gasto/subtotal/{id}")
-	public Integer subTotal(@PathVariable Long id ) {
-		return gastoService.subTotalGastosDetalle(id);
+	public ResponseEntity<?> subTotal(@PathVariable Long id ) {
+		
+		
+		Integer subtotal = gastoService.subTotalGastosDetalle(id);
+		Map<String, Object> response = new HashMap<>();
+		
+		if(subtotal == null) {
+			response.put("mensaje", "No se encontró el gasto con el ID: " + id +" " +"para mostrar el subtotal");
+	          return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+		}
+		
+	     return new ResponseEntity<Integer>(subtotal,HttpStatus.OK);
+		
 	}
 }

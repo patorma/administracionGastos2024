@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.patriciocontreras.entity.Gasto;
 import com.patriciocontreras.entity.LocalPago;
 import com.patriciocontreras.entity.Pago;
-import com.patriciocontreras.entity.TipoPagos;
 import com.patriciocontreras.service.IPagoService;
 
 import jakarta.validation.Valid;
