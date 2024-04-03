@@ -3,17 +3,16 @@ package com.patriciocontreras.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -52,10 +51,12 @@ public class Gasto implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fechaGasto; 
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	/*@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "tipo_gasto_id",referencedColumnName = "id")
-	@JsonIgnoreProperties({"hibernateLazyInitializer","hadler"})
-	private TipoGasto tipoGasto;
+	@JsonIgnoreProperties({"hibernateLazyInitializer","hadler"})*/
+	@Column(name="tipo_gasto",nullable = false)
+	@Enumerated(value = EnumType.STRING)
+	private TiposGastos tipoGasto;
 	
 	
 	

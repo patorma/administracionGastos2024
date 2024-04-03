@@ -29,7 +29,7 @@ import com.patriciocontreras.DTO.DetalleGastoDTO;
 
 import com.patriciocontreras.entity.Gasto;
 import com.patriciocontreras.service.IGastoService;
-import com.patriciocontreras.entity.TipoGasto;
+
 
 import jakarta.validation.Valid;
 
@@ -173,7 +173,7 @@ public class GastoController {
 			}
 			gastoService.eliminar(id);
 		} catch (DataAccessException e) {
-			response.put("mensaje", "Error al eliminar el gasto de la base de datos!");
+			response.put("mensaje", "No se pudo eliminar el gasto, revisar si hay pagos,tipo de gasto o detalle asociados!");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -182,10 +182,10 @@ public class GastoController {
 		return new ResponseEntity<Map<String, Object>>(response,HttpStatus.OK);
 	}
 	
-	@GetMapping("/gastos/tipoGastos")
+	/*@GetMapping("/gastos/tipoGastos")
 	public List<TipoGasto> listarTipos(){
 		return gastoService.findAllTipos();
-	}
+	}*/
 	
 	@GetMapping("/gastos/detalle/{id}")
 	public  ResponseEntity<?> obtenerDetallesGastos(@PathVariable Long id){
@@ -198,13 +198,13 @@ public class GastoController {
 		}
 		
         List<Map<String, Object>> detallesJSON = new ArrayList<>();
-
         for (Object[] detalle : detalles) {
-            int precio = (int) detalle[0];
+           int precio = (int) detalle[0];
             int cantidad = (int) detalle[1];
-            int subtotal = (int) detalle[2];
-
-            DetalleGastoDTO detalleGastoDTO = new DetalleGastoDTO(precio, cantidad, subtotal);
+            int subtotal = (int) detalle[2]; 
+            String producto = (String) detalle[3];
+           
+            DetalleGastoDTO detalleGastoDTO = new DetalleGastoDTO(precio, cantidad, subtotal, producto.toString()); // Convertir subtotal a String
             detallesJSON.add(detalleGastoDTO.toMap());
         }
    
@@ -214,7 +214,7 @@ public class GastoController {
 		
 	
 	
-	@GetMapping("gasto/subtotal/{id}")
+	@GetMapping("/gasto/subtotal/{id}")
 	public ResponseEntity<?> subTotal(@PathVariable Long id ) {
 		
 		
@@ -228,5 +228,19 @@ public class GastoController {
 		
 	     return new ResponseEntity<Integer>(subtotal,HttpStatus.OK);
 		
+	}
+	
+	@GetMapping("/gasto/total")
+	public ResponseEntity<?> total(){
+		
+		Integer total = gastoService.totalGastos();
+		Map<String, Object> response = new HashMap<>();
+		
+		if(total == null) {
+			response.put("mensaje", "No hay aún total de todos los gastos del sistema");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+		}
+		
+		return new  ResponseEntity<Integer>(total,HttpStatus.OK);
 	}
 }

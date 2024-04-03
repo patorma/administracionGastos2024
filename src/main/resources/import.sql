@@ -1,19 +1,13 @@
 
-/*INSERT de tabla de  tipos de gastos*/
 
-INSERT INTO tipo_gastos (tipo) VALUES ('GASTO_COMUN');
-INSERT INTO tipo_gastos (tipo) VALUES  ('FERRETERIA');
-INSERT INTO tipo_gastos (tipo) VALUES ('SUPERMERCADO');
-INSERT INTO tipo_gastos (tipo) VALUES  ('VIAJE');
-INSERT INTO tipo_gastos (tipo) VALUES ('ALOJAMIENTO');
-INSERT INTO tipo_gastos (tipo) VALUES  ('LEÑA');
-INSERT INTO tipo_gastos (tipo) VALUES ('CASA_COMERCIAL');
 
 /* INSERT de tabla de gasto*/
-INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto_id) VALUES  ('Se compro en laja en el supermercado unico carne,aceite y salmon para el almuerzo','2024-02-14',3);/*RETURNING id, invoice_date;*/
-INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto_id) VALUES  ('Se compro dos pasajes para santiago de ida','2024-03-20',4);
-INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto_id) VALUES ('se compraron en la ferreteria gran fe: destornillador,3 metros de malla y 6 sacos para basura','2023-12-06',2);
-INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto_id) VALUES ('Se compro 3 metros de leña','2024-03-20',6);
+INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto) VALUES  ('Se compro en laja en el supermercado unico carne,aceite y salmon para el almuerzo','2024-02-14','SUPERMERCADO');/*RETURNING id, invoice_date;*/
+INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto) VALUES  ('Se compro dos pasajes para santiago de ida','2024-03-20','VIAJE');
+INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto) VALUES ('se compraron en la ferreteria gran fe: destornillador,3 metros de malla y 6 sacos para basura','2023-12-06','FERRETERIA');
+INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto) VALUES ('Se compro 3 metros de leña','2024-03-20','LEÑA');
+INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto) VALUES ('Se compro 3 metros de leña','2024-03-20','LEÑA');
+INSERT INTO gastos (descripcion,fecha_gasto,tipo_gasto) VALUES ('Se compro 3 metros de leña','2024-03-20','LEÑA');
 
 /* INSERT de tabla detalle_gastos */
 

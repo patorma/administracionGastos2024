@@ -10,7 +10,7 @@ import com.patriciocontreras.dao.IGastoDao;
 import com.patriciocontreras.dao.IGenericDao;
 
 import com.patriciocontreras.entity.Gasto;
-import com.patriciocontreras.entity.TipoGasto;
+
 import com.patriciocontreras.service.IGastoService;
 
 @Service
@@ -32,18 +32,25 @@ public class GastoServiceImpl extends CRUDImpl<Gasto, Long> implements IGastoSer
 		return gastoDao.obtenerDetallesGastos(idGasto);
 	}
 
-	@Override
+	/*@Override
 	@Transactional(readOnly = true)
 	public List<TipoGasto> findAllTipos() {
 		
 		return gastoDao.findAllTipos();
-	}
+	}*/
 
 	@Override
 	@Transactional(readOnly = true)
 	public Integer subTotalGastosDetalle(Long idGasto) {
 		
 		return gastoDao.subTotalGastosDetalle(idGasto);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Integer totalGastos() {
+		
+		return gastoDao.totalGastos();
 	}
 
 }

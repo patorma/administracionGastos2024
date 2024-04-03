@@ -16,19 +16,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DetalleGastoDTO {
 	
-	private int precio;
-	private int cantidad;
-	private int subtotal;
-	
+	    private int precio;
+	    private int cantidad;
+	    private int subtotal; // Cambiar a Integer
+	    private String producto;
 
-	
-	public Map<String, Object> toMap(){
-		 Map<String, Object> map = new HashMap<>();
+	    public Map<String, Object> toMap(){
+	        Map<String, Object> map = new HashMap<>();
 	        map.put("precio", precio);
 	        map.put("cantidad", cantidad);
 	        map.put("subtotal", subtotal);
+	        map.put("producto", producto);
 	        return map;
-	}
+	    }
 	
 
 	
