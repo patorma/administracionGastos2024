@@ -203,8 +203,9 @@ public class GastoController {
             int cantidad = (int) detalle[1];
             int subtotal = (int) detalle[2]; 
             String producto = (String) detalle[3];
+            Long id1 = (Long) detalle[4];
            
-            DetalleGastoDTO detalleGastoDTO = new DetalleGastoDTO(precio, cantidad, subtotal, producto.toString()); // Convertir subtotal a String
+            DetalleGastoDTO detalleGastoDTO = new DetalleGastoDTO(precio, cantidad, subtotal, producto.toString(),id1); // Convertir subtotal a String
             detallesJSON.add(detalleGastoDTO.toMap());
         }
    

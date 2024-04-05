@@ -22,16 +22,6 @@ INSERT INTO detalle_gastos (producto,cantidad,precio_unitario,gasto_id) VALUES (
 INSERT INTO detalle_gastos (producto,cantidad,precio_unitario,gasto_id) VALUES ('saco de escombros',6,500,3);
 INSERT INTO detalle_gastos (producto,cantidad,precio_unitario,gasto_id) VALUES ('leña',3,20000,4);
 
-/* INSERT  de tabla local_pagos*/
-INSERT INTO local_pagos (nombre,direccion,ciudad) VALUES ('Supermercado Unico','Balmaceda #456','Laja');
-INSERT INTO local_pagos (nombre,direccion,ciudad) VALUES ('Ferreteria Gran fe','Ohiggins #528','Laja');
-INSERT INTO local_pagos (nombre,direccion,ciudad) VALUES ('no','no','Laja');
-INSERT INTO local_pagos (nombre,direccion,ciudad) VALUES ('terminal buses laja','balmaceda #120','Laja');
-
-/* INSERT de tabla pagos*/
-INSERT INTO pagos (tipo_pago,metodo_online,gasto_id,local_pago_id) VALUES ('DEBITO',DEFAULT,1,1);
-INSERT INTO pagos (tipo_pago,metodo_online,gasto_id,local_pago_id) VALUES  ('DEBITO',DEFAULT,2,1);
-
 
 /* INSERT de tabla notas*/
 INSERT INTO notas (titulo,contenido,fecha_nota) VALUES ('Viaje a Santiago','se debe viajar el 25 de marzo a desbloquear el codificador','2024-03-07');

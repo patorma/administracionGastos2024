@@ -41,6 +41,7 @@ public class DetalleGasto implements Serializable{
 
 	@Column(nullable = false)
 	@NotEmpty
+	@NotNull(message = "no puede estar vacio el producto")
 	private String producto;
 	
 	@Column(nullable = false)
@@ -49,7 +50,7 @@ public class DetalleGasto implements Serializable{
 	
 	@Column(name = "precio_unitario",nullable = false)
 	@NotNull(message = "no puede estar vacio la cantidad")
-	private int precioUnitario;
+	private int precio;
 	
 	/*
 	@Transient

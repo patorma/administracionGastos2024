@@ -137,7 +137,7 @@ public class DetalleGastoController {
 			//modificamos los datos del detalle del gasto actual con los datos del detalle del gasto que te envian
 			detalleGastoActual.setProducto(detalleGasto.getProducto());
 			detalleGastoActual.setCantidad(detalleGasto.getCantidad());
-			detalleGastoActual.setPrecioUnitario(detalleGasto.getPrecioUnitario());
+			detalleGastoActual.setPrecio(detalleGasto.getPrecio());
 			detalleGastoActual.setGasto(detalleGasto.getGasto());
 			
 			detalleGastoUpdated = detalleGastoService.registrar(detalleGastoActual);
