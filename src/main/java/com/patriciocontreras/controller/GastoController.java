@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -89,7 +90,7 @@ public class GastoController {
 			List<String> errors = result.getFieldErrors()
 					     .stream()
 					     .map(err -> "El campo '"+ err.getField() + "' "+err.getDefaultMessage())
-					     .collect(Collectors.toList());
+					     .collect(toList());
 			response.put("errors", errors);
 			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
 		}
@@ -126,7 +127,7 @@ public class GastoController {
 			List<String> errors = result.getFieldErrors()
 					.stream()
 					.map(err -> "El campo '"+ err.getField() + "' "+err.getDefaultMessage())// muy parecido  al operador map en angular (rxjs), mismo concepto!
-					.collect(Collectors.toList());// ahora podemos convertir de regreso el stream  aun tipo List
+					.collect(toList());// ahora podemos convertir de regreso el stream  aun tipo List
 			response.put("errors", errors);
 			// se responde con un responseentity con listados de error
 			return new ResponseEntity<Map<String, Object>>(response,HttpStatus.BAD_REQUEST);
