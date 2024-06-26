@@ -18,7 +18,7 @@ import jakarta.persistence.Table;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,6 +42,7 @@ public class DetalleGasto implements Serializable{
 	@Column(nullable = false)
 	@NotEmpty
 	@NotNull(message = "no puede estar vacio el producto")
+	@Size(min = 3,max = 300)
 	private String producto;
 	
 	@Column(nullable = false)

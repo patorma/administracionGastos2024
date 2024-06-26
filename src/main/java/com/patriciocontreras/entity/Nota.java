@@ -33,6 +33,7 @@ public class Nota implements Serializable {
 	
 	@Column(nullable = false)
 	@NotEmpty
+	@Size(min = 3,max = 300) 
 	private String titulo;
 	
 	@Column(nullable = false)
