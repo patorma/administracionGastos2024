@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_DB: gastosdb
+      POSTGRES_USER: gastosuser
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5433"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - spring_network   # ← agrega esta línea
+
+  app:
+    build: .
+    container_name: springboot_app
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/gastosdb
+      SPRING_DATASOURCE_USERNAME: gastosuser
+      SPRING_DATASOURCE_PASSWORD: secret
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - spring_network
+
+volumes:
+  postgres_data:
+
+networks:
+  spring_network:
+    driver: bridge

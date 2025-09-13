@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.patriciocontreras</groupId>
 	<artifactId>administracion-gastos</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>administracion-gastos</name>
 	<description>Backend en Spring de administracion de gastos</description>
 	<properties>
